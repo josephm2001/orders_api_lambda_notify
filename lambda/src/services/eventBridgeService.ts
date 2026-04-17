@@ -12,7 +12,7 @@ function getClient(): EventBridgeClient {
 }
 
 function getEventBusName(): string {
-  return process.env.EVENT_BUS_NAME ?? "default";
+  return process.env.EVENT_BUS_NAME ?? "express-bite-events";
 }
 
 export interface OrderCreatedDetail {
