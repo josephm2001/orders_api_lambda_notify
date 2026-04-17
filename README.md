@@ -13,7 +13,6 @@ API REST serverless para gestión de pedidos del proyecto Express Bite.
 | Variable | Descripción | Requerida para |
 |---|---|---|
 | `PRODUCTS_API_URL` | URL base de la Products API | `POST /api/orders`, `PATCH /api/orders/:id` |
-| `EVENT_BUS_NAME` | Nombre del EventBridge custom event bus | `POST /api/orders/notify` |
 
 ---
 
@@ -169,7 +168,7 @@ Registra un pedido ya construido (sin consultar la Products API) y publica un ev
 {
   "Source": "express-bite.orders",
   "DetailType": "OrderCreated",
-  "EventBusName": "<EVENT_BUS_NAME>",
+  "EventBusName": "default",
   "Detail": {
     "orderId": "3f9c1d2a-ab44-4f7e-9b12-8e5d4c6a7f01",
     "customerName": "Maria Lopez",

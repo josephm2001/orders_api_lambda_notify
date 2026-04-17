@@ -12,9 +12,7 @@ function getClient(): EventBridgeClient {
 }
 
 function getEventBusName(): string {
-  const name = process.env.EVENT_BUS_NAME;
-  if (!name) throw new Error("EVENT_BUS_NAME environment variable is not set");
-  return name;
+  return process.env.EVENT_BUS_NAME ?? "default";
 }
 
 export interface OrderCreatedDetail {
