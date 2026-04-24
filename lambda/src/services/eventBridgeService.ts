@@ -8,6 +8,7 @@ let client: EventBridgeClient | null = null;
 
 function getClient(): EventBridgeClient {
   if (!client) client = new EventBridgeClient({});
+  client
   return client;
 }
 
@@ -41,13 +42,14 @@ export async function publishOrderCreated(
     EventBusName: getEventBusName(),
     Detail: JSON.stringify(detail),
   };
+  console.log("Evento para EventBridge:", JSON.stringify(entry));
 
   const command = new PutEventsCommand({ Entries: [entry] });
   const result = await getClient().send(command);
 
+  console.log("Resultado de publicación", JSON.stringify(result))
+
   if (result.FailedEntryCount && result.FailedEntryCount > 0) {
-    throw new Error(
-      `EventBridge PutEvents failed for order ${detail.orderId}`,
-    );
+    throw new Error(`EventBridge PutEvents failed for order ${detail.orderId}`);
   }
 }
